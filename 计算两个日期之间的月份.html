@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="mmy">
+        <title></title>
+        <style></style>
+    </head>
+    <body>
+        jhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+    </body>
+    <script>
+    var arr=[{datestr:'2018-1'}];
+    var sarr=[]
+    var arr1=a('2018-11','2017-11')
+    for (var i=0;i<arr1.length;i++){// 制定时间区间
+        var arr2=arr1[i].split('-')
+        for(var m=0;m<arr.length;m++){
+            var arr3=arr[m].datestr.split('-');
+            if(Number(arr2[0]) == Number(arr3[0]) && Number(arr2[1]) == Number(arr3[1])){
+                console.log(arr2+'/'+arr3);
+                sarr.push(arr[m])
+            }else{
+                sarr.push(0)
+            }
+            console.log(arr2[1] == arr3[1])
+        }
+    }
+
+        function a(m,n){
+            var arr=[];
+            var arr1=m.split('-');
+            var arr2=n.split('-');
+            var p=o=arr1[0] - arr2[0];
+            if(!o){
+                for(var i=arr2;i<13;i++){
+                    arr.push(arr2[0]+'-'+i) 
+                }
+            }else{
+                for(var c=0;c<o+1;c++){
+                    for(var i=Number(arr2[1]);i<13;i++){
+                        if(i<10){ k='-0'}else{k='-'}
+                    arr.push(arr2[0]+k+i) ;
+                    if(arr2[0] == arr1[0] && i == (arr1[1] - 1)){
+                        return arr
+                    }
+                    if(i == 12 && p){
+                        arr2[1]=1;
+                        arr2[0]=Number(arr2[0])+1;
+                        p--;
+                    }
+                    }
+                }
+            }
+            return arr;
+        }
+        // console.log(a('2018-11','2017-11'))
+console.log(sarr)
+    </script>
+</html>

@@ -3,39 +3,39 @@ var that = this;
 var calendarIpt = document.getElementById('calendar');
 var detailsDiv = document.getElementById('details');
 
-calendarIpt.onclick = function () {
-    detailsDiv.style.display = 'block';
+// calendarIpt.onclick = function () {
+//     detailsDiv.style.display = 'block';
     var year = new Date().getFullYear();
     var month = new Date().getMonth() + 1;
     detailsDiv.innerHTML = buildui(year, month)
-}
+// }
 // 获取指定月份日期信息
 function Calendar(year, month) {
     var ret = [];
     var first = new Date(year, month - 1, 1); // 当月第一天是周几?
     var firstDayWeekDay = first.getDay();
-    if (firstDayWeekDay == 0) firstDayWeekDay = 7;
+    // if (firstDayWeekDay == 0) firstDayWeekDay = 7;
 
     year = first.getFullYear();
     month = first.getMonth() + 1;
 
     var lastDayofLastMonth = new Date(year, month - 1, 0);
     var lastDateofLastMonth = that.lastDateofLastMonth = lastDayofLastMonth.getDate(); // 上个月最后一天是哪一天？
-    var preMonthDayCount = that.lastDateofLastMonth = firstDayWeekDay - 1; // 上个月需要展示多少天？
+    var preMonthDayCount = that.lastDateofLastMonth = firstDayWeekDay ; // 上个月需要展示多少天？
     var lastDay = that.lastDay = new Date(year, month, 0); // 本月的最后一天
     var lastDate = that.lastDate = lastDay.getDate();
 
     // 通过循环获取时间
     for (var i = 0; i < 7 * 6; i++) {
         // *6直接获取六周的数据，
-        var date = i + 1 - preMonthDayCount;
+        var date = i - preMonthDayCount+1;
         var showDate = date;
         var thisMonth = month;
         if (date <= 0) {
             thisMonth = month - 1;
             showDate = date + lastDateofLastMonth;
         } else if (date > lastDate) {
-            thisMonth = month + 1;
+            thisMonth = month + 1;// 本月的天数小于上个月的应该展示的天数（只能为负）与当前i的和-》意味着当前i已经比本月天数大，即进入下月
             showDate = showDate - lastDate
         }
         if (thisMonth == 0) {
@@ -69,13 +69,13 @@ function buildui(year, month) {
         '<table>' +
         '<thead>' +
         '<tr>' +
+        '<th>日</th>' +
         '<th>一</th>' +
         '<th>二</th>' +
         '<th>三</th>' +
         '<th>四</th>' +
         '<th>五</th>' +
         '<th>六</th>' +
-        '<th>日</th>' +
         '</tr>' +
         '</thead>' +
         '<tbody>';

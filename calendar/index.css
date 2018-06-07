@@ -16,7 +16,7 @@
     font-size: 16px;
     color: #666;
     box-shadow: 2px 2px 8px 2px rgb(128, 128, 128);
-    display: none;
+    display: block;
     position: absolute;
 }
 #details-show{
